@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">qa-util</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <array name="util_commands">
+        <item>Remove cookie</item>
+        <item>Deprecate cookie</item>
+        <item>Remove all accounts</item>
+    </array>
+</resources>
