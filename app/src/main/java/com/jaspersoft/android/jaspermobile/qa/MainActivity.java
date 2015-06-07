@@ -1,5 +1,6 @@
 package com.jaspersoft.android.jaspermobile.qa;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -14,6 +15,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private static final int REMOVE_ALL_ACCOUNTS = 2;
     private static final int DOWNGRADE_SERVER_VERSION = 3;
     private static final int CHANGE_SERVER_EDITION = 4;
+    private static final int SHOW_DRIVE_ACTION = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,10 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 break;
             case CHANGE_SERVER_EDITION:
                 utilEvent.fireChangeServerEdition();
+                break;
+            case SHOW_DRIVE_ACTION:
+                Intent drive = new Intent(this, DriveActivity.class);
+                startActivity(drive);
                 break;
         }
     }
