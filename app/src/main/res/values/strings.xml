@@ -3,12 +3,15 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <!-- Pagination control -->
+    <string name="of">of %d</string>
+    <string name="dialog_current_page">Set current page</string>
 
     <array name="util_commands">
         <item>Remove cookie</item>
         <item>Deprecate cookie</item>
         <item>Remove all accounts</item>
-        <item>Downgrade to version 5.6.1</item>
+        <item>Update server version</item>
         <item>Change server edition to CE</item>
     </array>
 </resources>

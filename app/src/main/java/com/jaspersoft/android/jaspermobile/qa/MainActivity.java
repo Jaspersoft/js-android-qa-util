@@ -1,14 +1,16 @@
 package com.jaspersoft.android.jaspermobile.qa;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.jaspersoft.android.jaspermobile.qa.dialog.NumberDialogFragment;
 
-public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
+
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, NumberDialogFragment.NumberDialogClickListener {
     private static final int REMOVE_COOKIES = 0;
     private static final int DEPRECATE_COOKIES = 1;
     private static final int REMOVE_ALL_ACCOUNTS = 2;
@@ -40,7 +42,11 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 utilEvent.fireRemoveAccountsEvent();
                 break;
             case DOWNGRADE_SERVER_VERSION:
-                utilEvent.fireDowngradeServer();
+                NumberDialogFragment.createBuilder(getSupportFragmentManager())
+                        .setMinValue(1)
+                        .setMaxValue(10)
+                        .setCurrentValue(6)
+                        .show();
                 break;
             case CHANGE_SERVER_EDITION:
                 utilEvent.fireChangeServerEdition();
@@ -48,5 +54,9 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         }
     }
 
+    @Override
+    public void onPageSelected(int page, int requestCode) {
+        UtilEvent.get(this).fireChangeServerVersion(String.valueOf(page));
+    }
 }
 

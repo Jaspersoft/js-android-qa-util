@@ -63,9 +63,9 @@ public class UtilEvent {
         mContext.sendBroadcast(intent);
     }
 
-    public void fireDowngradeServer() {
+    public void fireChangeServerVersion(String version) {
         Intent intent = new Intent(DOWNGRADE_SERVER_VERSION);
-        intent.putExtra("target_version", "5.6.1");
+        intent.putExtra("target_version", version);
         mContext.sendBroadcast(intent);
     }
 
