@@ -2,6 +2,7 @@ package com.jaspersoft.android.jaspermobile.qa;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,7 +31,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        UtilEvent utilEvent = UtilEvent.get(this);
+        final UtilEvent utilEvent = UtilEvent.get(this);
         switch (position) {
             case REMOVE_COOKIES:
                 utilEvent.fireRemoveCookiesEvent();
@@ -48,11 +49,20 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 utilEvent.fireChangeServerEdition();
                 break;
             case SHOW_DRIVE_ACTION:
-                Intent drive = new Intent(this, DriveActivity.class);
-                startActivity(drive);
+                DriveSelectFileDialog.display(getSupportFragmentManager(), new DriveSelectFileDialog.OnDescriptorResultListener() {
+                    @Override
+                    public void onDescriptorResult(ParcelFileDescriptor descriptor) {
+                        utilEvent.fireProfilePopulateEvent(new ProfilesFileHolder(descriptor));
+                    }
+                });
                 break;
         }
     }
 
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        DriveSelectFileDialog.handleActivityResult(getSupportFragmentManager(), requestCode, resultCode, data);
+    }
 }
 
