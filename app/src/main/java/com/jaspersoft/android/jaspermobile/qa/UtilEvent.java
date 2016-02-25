@@ -26,6 +26,9 @@ package com.jaspersoft.android.jaspermobile.qa;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 /**
  * @author Tom Koptel
@@ -35,6 +38,9 @@ public class UtilEvent {
     private static final String REMOVE_COOKIES = "jaspermobile.util.action.REMOVE_COOKIES";
     private static final String DEPRECATE_COOKIES = "jaspermobile.util.action.DEPRECATE_COOKIES";
     private static final String REMOVE_ALL_ACCOUNTS = "jaspermobile.util.action.REMOVE_ALL_ACCOUNTS";
+    private static final String DOWNGRADE_SERVER_VERSION = "jaspermobile.util.action.DOWNGRADE_SERVER_VERSION";
+    private static final String CHANGE_SERVER_EDITION = "jaspermobile.util.action.CHANGE_SERVER_EDITION";
+    private static final String LOAD_PROFILES= "jaspermobile.util.action.LOAD_PROFILES";
 
     private final Context mContext;
 
@@ -61,4 +67,26 @@ public class UtilEvent {
         mContext.sendBroadcast(intent);
     }
 
+    public void fireDowngradeServer() {
+        Intent intent = new Intent(DOWNGRADE_SERVER_VERSION);
+        intent.putExtra("target_version", "5.6.1");
+        mContext.sendBroadcast(intent);
+    }
+
+    public void fireChangeServerEdition() {
+        Intent intent = new Intent(CHANGE_SERVER_EDITION);
+        intent.putExtra("edition_version", "CE");
+        mContext.sendBroadcast(intent);
+    }
+
+    public void fireProfilePopulateEvent(ProfilesFileHolder fileHolder) {
+        try {
+            String json = fileHolder.getJson();
+            Intent intent = new Intent(LOAD_PROFILES);
+            intent.putExtra("source_json", json);
+            mContext.sendBroadcast(intent);
+        } catch (IOException e) {
+            Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
 }

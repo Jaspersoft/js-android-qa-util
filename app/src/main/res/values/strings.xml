@@ -8,5 +8,8 @@
         <item>Remove cookie</item>
         <item>Deprecate cookie</item>
         <item>Remove all accounts</item>
+        <item>Downgrade to version 5.6.1</item>
+        <item>Change server edition to CE</item>
+        <item>Drive Api</item>
     </array>
 </resources>

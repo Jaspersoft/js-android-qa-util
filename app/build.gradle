@@ -17,8 +17,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+        encoding 'ISO-8859-1'
+    }
 }
 
 dependencies {
     compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.google.android.gms:play-services-drive:7.5.0'
+    compile 'commons-io:commons-io:2.4'
 }
