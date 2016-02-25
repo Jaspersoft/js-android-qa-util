@@ -19,15 +19,27 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".DriveActivity"
-            android:label="Drive activity" />
-
         <meta-data android:name="com.google.android.apps.drive.APP_ID" android:value="id=293661705970" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <service
+            android:name=".ControlService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
+
+        <receiver
+            android:name=".ActionReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="jaspermobile.internal.action.REMOVE_COOKIES" />
+                <action android:name="jaspermobile.internal.action.REMOVE_ALL_ACCOUNTS" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

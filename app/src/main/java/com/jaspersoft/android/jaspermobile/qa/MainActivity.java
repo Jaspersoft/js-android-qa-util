@@ -21,6 +21,8 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ControlService.start(this);
+
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(android.R.id.list);
         String[] commands = getResources().getStringArray(R.array.util_commands);
