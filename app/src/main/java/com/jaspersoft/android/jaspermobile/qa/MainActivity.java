@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
     private static final int REMOVE_COOKIES = 0;
-    private static final int DEPRECATE_COOKIES = 1;
+    private static final int REMOVE_PASSWORD = 1;
     private static final int REMOVE_ALL_ACCOUNTS = 2;
     private static final int DOWNGRADE_SERVER_VERSION = 3;
     private static final int CHANGE_SERVER_EDITION = 4;
@@ -38,8 +38,8 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
             case REMOVE_COOKIES:
                 utilEvent.fireRemoveCookiesEvent();
                 break;
-            case DEPRECATE_COOKIES:
-                utilEvent.fireDeprecatedCookiesEvent();
+            case REMOVE_PASSWORD:
+                utilEvent.fireInvalidatePasswordEvent();
                 break;
             case REMOVE_ALL_ACCOUNTS:
                 utilEvent.fireRemoveAccountsEvent();

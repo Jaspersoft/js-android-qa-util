@@ -36,7 +36,7 @@ import java.io.IOException;
  */
 public class UtilEvent {
     private static final String REMOVE_COOKIES = "jaspermobile.util.action.REMOVE_COOKIES";
-    private static final String DEPRECATE_COOKIES = "jaspermobile.util.action.DEPRECATE_COOKIES";
+    private static final String INVALIDATE_PASSWORD = "jaspermobile.util.action.INVALIDATE_PASSWORD";
     private static final String REMOVE_ALL_ACCOUNTS = "jaspermobile.util.action.REMOVE_ALL_ACCOUNTS";
     private static final String DOWNGRADE_SERVER_VERSION = "jaspermobile.util.action.DOWNGRADE_SERVER_VERSION";
     private static final String CHANGE_SERVER_EDITION = "jaspermobile.util.action.CHANGE_SERVER_EDITION";
@@ -57,8 +57,8 @@ public class UtilEvent {
         mContext.sendBroadcast(intent);
     }
 
-    public void fireDeprecatedCookiesEvent() {
-        Intent intent = new Intent(DEPRECATE_COOKIES);
+    public void fireInvalidatePasswordEvent() {
+        Intent intent = new Intent(INVALIDATE_PASSWORD);
         mContext.sendBroadcast(intent);
     }
 

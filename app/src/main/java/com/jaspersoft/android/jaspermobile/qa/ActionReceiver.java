@@ -7,6 +7,7 @@ import android.content.Intent;
 public class ActionReceiver extends BroadcastReceiver {
     public static final String REMOVE_COOKIES_ACTION = "jaspermobile.internal.action.REMOVE_COOKIES";
     public static final String REMOVE_ALL_ACCOUNTS = "jaspermobile.internal.action.REMOVE_ALL_ACCOUNTS";
+    public static final String INVALIDATE_PASSWORD = "jaspermobile.internal.action.INVALIDATE_PASSWORD";
 
     public ActionReceiver() {
     }
@@ -14,10 +15,14 @@ public class ActionReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
+        UtilEvent utilEvent = UtilEvent.get(context);
+
         if (REMOVE_COOKIES_ACTION.equals(action)) {
-            UtilEvent.get(context).fireRemoveCookiesEvent();
+            utilEvent.fireRemoveCookiesEvent();
+        } else if (INVALIDATE_PASSWORD.equals(action)) {
+            utilEvent.fireInvalidatePasswordEvent();
         } else if (REMOVE_ALL_ACCOUNTS.equals(action)) {
-            UtilEvent.get(context).fireRemoveAccountsEvent();
+            utilEvent.fireRemoveAccountsEvent();
         }
     }
 }
